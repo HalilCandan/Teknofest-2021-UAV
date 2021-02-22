@@ -1,0 +1,17 @@
+import cv2 as cv
+import numpy as np
+
+
+
+img=cv.imread(r"C:\Users\MONSTER\Desktop\odev\renkodev.jpg")
+hsv = cv.cvtColor(img,cv.COLOR_BGR2HSV)
+
+lower_range = np.array([150,100,100])
+upper_range = np.array([180,255,250])
+mask = cv.inRange(hsv, lower_range,upper_range)
+result = cv.bitwise_and(img, img, mask = mask)
+
+cv.imshow('filtered', result)
+
+cv.waitKey(0)
+cv.destroyWindow('Image')
